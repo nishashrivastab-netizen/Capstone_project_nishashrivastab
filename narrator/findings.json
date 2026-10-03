@@ -1,1 +1,51 @@
+Task 1 — narrator/findings.json
+"""
+
+# Import the standard json utility package
+import json
+
+# Extract and structure the exact verified metrics into a clean dictionary
+findings_dict = {
+    "cleaned_total_revenue_inr": round(total_order_val, 2),
+    "raw_total_revenue_inr": 99860.20,
+    "duplicate_reconciliation_delta_inr": 2501.90,
+    "return_rate_by_payment": {
+        "COD": 44.4,
+        "CARD": 14.7,
+        "UPI": 18.9
+    },
+    "highest_risk_segment": {
+        "payment_method": "COD",
+        "city_tier": 2,
+        "return_rate_pct": 54.5
+    },
+    "true_peak_month": {
+        "month": "2026-03",
+        "revenue_inr": 20318.90
+    },
+    "outlier_inflated_month": {
+        "month": "2026-01",
+        "apparent_revenue_inr": 29582.10,
+        "corrected_revenue_inr": 11637.10
+    }
+}
+
+# Convert dictionary to a structured data frame for clean grid table validation
+findings_preview = pd.DataFrame(list(findings_dict.items()), columns=['Metric Key', 'Verified Value'])
+
+# Display the findings structured grid table before saving the JSON file
+findings_preview
+
+import os
+
+# Ensure the narrator directory exists in the environment workspace
+os.makedirs('narrator', exist_ok=True)
+
+# Write the verified dictionary object directly into a structured json file target
+with open('narrator/findings.json', 'w') as json_file:
+    json.dump(findings_dict, json_file, indent=4)
+
+# Print a clean confirmation message to validate the file creation success
+print("Success: 'narrator/findings.json' file has been successfully written and saved.")
+
 
