@@ -1,7 +1,7 @@
 {
-    "cleaned_total_revenue_inr": round(total_order_val, 2),
-    "raw_total_revenue_inr": 99860.20,
-    "duplicate_reconciliation_delta_inr": 2501.90,
+    "cleaned_total_revenue_inr": 97358.3,
+    "raw_total_revenue_inr": 99860.2,
+    "duplicate_reconciliation_delta_inr": 2501.9,
     "return_rate_by_payment": {
         "COD": 44.4,
         "CARD": 14.7,
@@ -14,11 +14,11 @@
     },
     "true_peak_month": {
         "month": "2026-03",
-        "revenue_inr": 20318.90
+        "revenue_inr": 20318.9
     },
     "outlier_inflated_month": {
         "month": "2026-01",
-        "apparent_revenue_inr": 29582.10,
-        "corrected_revenue_inr": 11637.10
+        "apparent_revenue_inr": 29582.1,
+        "corrected_revenue_inr": 11637.1
     }
 }
