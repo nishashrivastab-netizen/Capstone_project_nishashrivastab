@@ -1,7 +1,4 @@
-
 import pandas as pd
-import matplotlib.pyplot as plt
-import os
 """Task 10 — Outlier-corrected time series"""
 
 # Select the first five rows of the order_date column to inspect its existing layout
