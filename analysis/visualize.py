@@ -1,4 +1,4 @@
-!pip install -q -U google-generativeai
+
 import google.generativeai as genai
 """Task 10 — Outlier-corrected time series"""
 
