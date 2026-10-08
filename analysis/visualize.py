@@ -1,4 +1,5 @@
-import pandas as pd
+!pip install -q -U google-generativeai
+import google.generativeai as genai
 """Task 10 — Outlier-corrected time series"""
 
 # Select the first five rows of the order_date column to inspect its existing layout
