@@ -25,12 +25,12 @@ customers = pd.read_csv(customers_path)
 products = pd.read_csv(products_path)
 
 # Print dimensions of the orders data frame before any data cleaning
-print(orders.shape)
+# print(orders.shape)
 
 """Task 2 — Standardize payment_method casing"""
 
 # Display unique values of payment_method column to check its raw formatting
-print(orders['payment_method'].unique())
+# print(orders['payment_method'].unique())
 
 # Strip spaces from text in payment_method column
 orders['payment_method'] = orders['payment_method'].astype(str).str.strip()
@@ -39,7 +39,7 @@ orders['payment_method'] = orders['payment_method'].astype(str).str.strip()
 orders['payment_method'] = orders['payment_method'].str.upper()
 
 # Print unique values after cleaning to validate the final format
-print(orders['payment_method'].value_counts())
+# print(orders['payment_method'].value_counts())
 
 """Task 3 — Remove duplicate orders"""
 
@@ -63,11 +63,11 @@ orders_clean = orders.drop_duplicates(subset=dup_subset, keep='first')
 shape_val = pd.DataFrame({'Data Metric': ['Final Rows Count', 'Final Columns Count'], 'Value': [orders_clean.shape[0], orders_clean.shape[1]]})
 
 # Display the table of 5 deleted order IDs
-print("Dropped Order IDs Table:")
+# print("Dropped Order IDs Table:")
 display(dropped_table)
 
 # Display the final shape verification table to confirm 175 rows remain
-print("\nFinal Dataset Shape Table:")
+# print("\nFinal Dataset Shape Table:")
 display(shape_val)
 
 """Task 4 — Impute missing values"""
@@ -88,7 +88,7 @@ warnings.filterwarnings('ignore')
 
 # Calculate the median of the rating column before filling values
 rating_median = orders_clean['rating'].median()
-print(f"Calculated Rating Median: {rating_median}")
+# print(f"Calculated Rating Median: {rating_median}")
 
 # Explicitly copy data frame structure to remove slice reference limitations
 orders_clean = orders_clean.copy()
@@ -109,7 +109,7 @@ final_missing_check
 """Task 5 — Merge and reconcile against Part 1"""
 
 # Print the exact column names available in the products dataset
-print(products.columns)
+# print(products.columns)
 
 # Convert orders_clean column names into a data frame structure for grid display
 orders_columns_df = pd.DataFrame({'Orders Clean Columns': list(orders_clean.columns)})
@@ -190,8 +190,8 @@ val_summary = pd.DataFrame({'Data Metric': ['Calculated Total Order Value'], 'Am
 display(val_summary)
 
 # Print the mandatory text paragraph reconciliation note to script output
-print("\nReconciliation Note:")
-print("The calculated total order_value across the 175 cleaned rows is ₹97,358.30. "
+# print("\nReconciliation Note:")
+# print("The calculated total order_value across the 175 cleaned rows is ₹97,358.30. "
       "This is exactly ₹2,501.90 less than the Part 1 Report (a)'s raw total of ₹99,860.20. "
       "This exact delta corresponds to the 5 duplicate rows removed in Task 3, which had a "
       "combined order_value of ₹2,501.90 when summed independently as a check. This confirms "
@@ -244,7 +244,7 @@ returned_format_table = pd.DataFrame({
 returned_format_table
 
 # Print the required hypothesis statement to the script output
-print("Hypothesis Statement: Does COD have a higher return rate than other payment methods?")
+# print("Hypothesis Statement: Does COD have a higher return rate than other payment methods?")
 
 # Calculate the mean return rate grouped by payment method and round to 1 decimal place
 return_rates = merged_df.groupby('payment_method')['returned'].mean().reset_index()
@@ -255,7 +255,7 @@ return_rates.columns = ['Payment Method', 'Return Rate (%)']
 display(return_rates)
 
 # Print the final mandatory tracking label to explicitly confirm the evaluation
-print("\nHypothesis Confirmed")
+# print("\nHypothesis Confirmed")
 
 """Task 8 — Multi-level segmentation"""
 
@@ -282,8 +282,8 @@ segmentation.columns = ['Payment Method', 'City Tier', 'Return Rate (%)', 'Total
 display(segmentation)
 
 # Print the mandatory text analysis detailing the specific high-risk segment focus
-print("\nSegmentation Analysis Note:")
-print("The highest-risk segment is explicitly identified as COD + Tier-2 cities at 54.5%. "
+# print("\nSegmentation Analysis Note:")
+# print("The highest-risk segment is explicitly identified as COD + Tier-2 cities at 54.5%. "
       "Out of 22 Tier-2 COD orders, exactly 12 were returned, resulting in a 54.5% rate. "
       "In contrast, Tier-1 COD orders have a 36.4% return rate. This segmentation clearly "
       "shows that the COD risk is not uniform across tiers, mirroring how a single blended "
@@ -305,8 +305,8 @@ corr_grid.columns = ['Variables', 'rating', 'returned', 'discount_pct', 'quantit
 display(corr_grid)
 
 # Print the mandatory text analysis evaluation stating column strengths and final label
-print("\nCorrelation Analysis Note:")
-print("All six pairwise relationship values fall strictly into the 0.0-0.19 band. "
+# print("\nCorrelation Analysis Note:")
+# print("All six pairwise relationship values fall strictly into the 0.0-0.19 band. "
       "Therefore, every pairwise value is explicitly labeled as negligible (r < 0.2). "
       "In particular, the specific relation between discount_pct and returned is negligible. "
       "Conclusion Label: Busted (discount_pct vs returned)")
@@ -315,4 +315,4 @@ print("All six pairwise relationship values fall strictly into the 0.0-0.19 band
 merged_df.to_csv('DATA/orders_clean.csv', index=False)
 
 # Print a simple success message to confirm the file has been safely written
-print("Success: Final cleaned dataset has been successfully saved to 'DATA/orders_clean.csv'")
+# print("Success: Final cleaned dataset has been successfully saved to 'DATA/orders_clean.csv'")
