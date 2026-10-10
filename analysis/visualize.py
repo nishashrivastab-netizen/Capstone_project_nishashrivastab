@@ -38,8 +38,8 @@ time_series_final = series_inc.merge(series_exc, on='Year-Month')
 display(time_series_final)
 
 # Print the mandatory text paragraph detailing the genuine peak month shift explanation
-print("\nTime Series Analysis Note:")
-print("January's apparent lead is an artifact of the two bulk orders landing in January "
+# print("\nTime Series Analysis Note:")
+# print("January's apparent lead is an artifact of the two bulk orders landing in January "
       "(00011 on 2026-01-28, 00098 on 2026-01-10), and that March is the genuine peak month "
       "once they're excluded — this is the whole point of doing Task 6 before Task 10, not after.")
 
