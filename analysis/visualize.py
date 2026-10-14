@@ -1,6 +1,6 @@
 
 import google.generativeai as genai
-"""Task 10 — Outlier-corrected time series"""
+# """Task 10 — Outlier-corrected time series"""
 
 # Select the first five rows of the order_date column to inspect its existing layout
 raw_date_preview = merged_df[['order_id', 'order_date']].head()
@@ -43,7 +43,7 @@ display(time_series_final)
       "(00011 on 2026-01-28, 00098 on 2026-01-10), and that March is the genuine peak month "
       "once they're excluded — this is the whole point of doing Task 6 before Task 10, not after.")
 
-"""Task 11 — Two visualizations (analysis/visualize.py)"""
+# """Task 11 — Two visualizations (analysis/visualize.py)"""
 
 # Calculate the return rates grouped by payment method in descending order
 chart1_data = merged_df.groupby('payment_method')['returned'].mean().reset_index()
