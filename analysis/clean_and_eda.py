@@ -27,7 +27,7 @@ products = pd.read_csv(products_path)
 # Print dimensions of the orders data frame before any data cleaning
 # print(orders.shape)
 
-"""Task 2 — Standardize payment_method casing"""
+#"""Task 2 — Standardize payment_method casing"""
 
 # Display unique values of payment_method column to check its raw formatting
 # print(orders['payment_method'].unique())
@@ -41,7 +41,7 @@ orders['payment_method'] = orders['payment_method'].str.upper()
 # Print unique values after cleaning to validate the final format
 # print(orders['payment_method'].value_counts())
 
-"""Task 3 — Remove duplicate orders"""
+# """Task 3 — Remove duplicate orders"""
 
 # Select the unique identifying columns for duplicate inspection
 raw_keys = orders[['customer_id', 'product_id', 'order_date', 'quantity', 'discount_pct', 'payment_method', 'rating', 'returned']].head()
@@ -70,7 +70,7 @@ display(dropped_table)
 # print("\nFinal Dataset Shape Table:")
 display(shape_val)
 
-"""Task 4 — Impute missing values"""
+# """Task 4 — Impute missing values"""
 
 # Calculate the total missing rows in target columns before applying any imputation rules
 raw_missing_check = orders_clean[['discount_pct', 'rating']].isnull().sum().reset_index()
@@ -106,7 +106,7 @@ final_missing_check.columns = ['Target Column', 'Missing Count After Clean']
 # Display the final missing check status in a clean grid table
 final_missing_check
 
-"""Task 5 — Merge and reconcile against Part 1"""
+# """Task 5 — Merge and reconcile against Part 1"""
 
 # Print the exact column names available in the products dataset
 # print(products.columns)
@@ -197,7 +197,7 @@ display(val_summary)
       "combined order_value of ₹2,501.90 when summed independently as a check. This confirms "
       "the difference is entirely due to data deduplication and not the discount or rating imputation.")
 
-"""Task 6 — IQR outlier detection on quantity"""
+# """Task 6 — IQR outlier detection on quantity"""
 
 # Calculate Q1, Q3, and Interquartile Range (IQR) for the quantity column
 q1 = merged_df['quantity'].quantile(0.25)
@@ -229,7 +229,7 @@ outliers_validation = outliers_detected[['order_id', 'product_id', 'quantity', '
 # Display the final outlier check results in a clean grid format
 outliers_validation
 
-"""Task 7 — Hypothesis: does COD have a higher return rate?"""
+# """Task 7 — Hypothesis: does COD have a higher return rate?"""
 
 # Select unique values and a sample of the returned column to check its raw structure
 raw_returned_check = merged_df['returned'].unique()
@@ -257,7 +257,7 @@ display(return_rates)
 # Print the final mandatory tracking label to explicitly confirm the evaluation
 # print("\nHypothesis Confirmed")
 
-"""Task 8 — Multi-level segmentation"""
+# """Task 8 — Multi-level segmentation"""
 
 # Select unique values of the new city_tier column to check its raw distribution
 raw_tier_check = merged_df['city_tier'].unique()
@@ -289,7 +289,7 @@ display(segmentation)
       "shows that the COD risk is not uniform across tiers, mirroring how a single blended "
       "rate can hide where the real problem is concentrated.")
 
-"""Task 9 — Correlation analysis"""
+# """Task 9 — Correlation analysis"""
 
 # Select the target numeric columns to construct the correlation dataset
 numeric_cols = ['rating', 'returned', 'discount_pct', 'quantity']
