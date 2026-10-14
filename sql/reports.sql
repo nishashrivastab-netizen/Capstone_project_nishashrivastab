@@ -1,17 +1,17 @@
-(a)  SELECT 
+  SELECT 
     COUNT(*) AS total_orders,
     ROUND(SUM(o.quantity * p.price * (1 - COALESCE(o.discount_pct, 0) / 100)), 2) AS total_revenue,
     ROUND(AVG(o.quantity * p.price * (1 - COALESCE(o.discount_pct, 0) / 100)), 2) AS avg_order_value
 FROM orders o
 JOIN products p ON o.product_id = p.product_id;
 
-(b)  SELECT 
+  SELECT 
     COUNT(*) AS total_rows,
     COUNT(rating) AS rated_rows,
     (COUNT(*) - COUNT(rating)) AS difference
 FROM orders;
 
-(c)  SELECT c.customer_id, c.name
+  SELECT c.customer_id, c.name
 FROM customers c
 LEFT JOIN orders o ON c.customer_id = o.customer_id
 GROUP BY c.customer_id, c.name
@@ -25,7 +25,7 @@ WHERE customer_id NOT IN (
     WHERE customer_id IS NOT NULL
 );
 
-(d)  SELECT 
+  SELECT 
     c.city,
     COUNT(o.order_id) AS total_orders,
     SUM(o.returned) AS returned_orders,
@@ -36,7 +36,7 @@ GROUP BY c.city
 HAVING return_rate_pct > 20.0
 ORDER BY return_rate_pct DESC;
 
-(e)  SELECT 
+SELECT 
     c.customer_id,
     c.name,
     ROUND(SUM(o.quantity * p.price * (1 - COALESCE(o.discount_pct, 0) / 100)), 2) AS total_spend
@@ -58,7 +58,7 @@ GROUP BY c.customer_id, c.name
 ORDER BY total_spend DESC, c.customer_id ASC
 LIMIT 3 OFFSET 2;
 
-(f)  SELECT 
+  SELECT 
     p.category,
     COUNT(o.order_id) AS order_count,
     ROUND(SUM(o.quantity * p.price * (1 - COALESCE(o.discount_pct, 0) / 100)), 2) AS revenue
@@ -69,14 +69,14 @@ GROUP BY p.category
 ORDER BY revenue DESC;
 
 
-(g)  SELECT COUNT(*) AS customers_starting_with_A
+  SELECT COUNT(*) AS customers_starting_with_A
 FROM customers
 WHERE name LIKE 'A%';
 
-(h)  SELECT DISTINCT acquisition_source
+  SELECT DISTINCT acquisition_source
 FROM customers;
 
-(i)  SET SQL_SAFE_UPDATES = 0;
+  SET SQL_SAFE_UPDATES = 0;
 ALTER TABLE customers ADD COLUMN loyalty_tier VARCHAR(10);
 UPDATE customers 
 SET loyalty_tier = CASE 
