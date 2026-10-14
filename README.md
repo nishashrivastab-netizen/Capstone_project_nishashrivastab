@@ -21,3 +21,5 @@ To run the automated data cleaning and analytics workflow, execute the scripts i
 To run the final business report script `narrator/generate_narrative.py`, you can choose between two modes:
 * **Online Mode:** Run the script with an active Gemini API key saved in your environment variables as `NISHA_GEMINI_API_KEY`.
 * **Offline Mode:** Run the script with no key configured. The pipeline will automatically route through the pre-formatted offline path without any network dependencies.
+* * **Validation Checker:** Programmatically audits the narrative text logic against findings.json to verify metrics accuracy (Result: METRIC CHECK: HARD PASS).
+
