@@ -13,6 +13,11 @@ To run the automated data cleaning and analytics workflow, execute the scripts i
 * Run `analysis/visualize.py` to filter January noise, verify March 2026 peak month (₹20,318.90), and run Pearson matrix checks (r < 0.2).
 
 ### 📊 Visual Insights
+<img width="686" height="470" alt="return_rate_by_payment" src="https://github.com/user-attachments/assets/5d9ac53a-a7a3-4d9f-b398-1de2c17450f2" />
+<img width="713" height="470" alt="monthly_revenue_trend" src="https://github.com/user-attachments/assets/cd9cd0ad-3dd1-47f4-a82c-6120c5098a56" />
+
+
+
 
 ## 3. Verified Metrics Storage
   * The validated statistical figures from my code are exported and stored inside `narrator/findings.json` mapping:
