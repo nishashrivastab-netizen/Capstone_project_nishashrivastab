@@ -10,7 +10,9 @@ To initialize the database, load and execute the SQL files in this exact order:
 ## 2. Python Data Analysis
 To run the automated data cleaning and analytics workflow, execute the scripts in this sequence:
 *  Run `analysis/clean_and_eda.py` to fix formats, handle types, impute ratings, and clean 5 duplicates (leaving 175 clean rows).
-* Run `analysis/visualize.py` to filter January noise, verify March 2026 peak month (₹20,318.90), and run Pearson matrix checks (r < 0.2). 
+* Run `analysis/visualize.py` to filter January noise, verify March 2026 peak month (₹20,318.90), and run Pearson matrix checks (r < 0.2).
+
+### 📊 Visual Insights
 
 ## 3. Verified Metrics Storage
   * The validated statistical figures from my code are exported and stored inside `narrator/findings.json` mapping:
