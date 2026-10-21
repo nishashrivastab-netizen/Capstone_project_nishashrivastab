@@ -2,6 +2,13 @@
     COUNT(*) AS total_orders,
     ROUND(SUM(o.quantity * p.price * (1 - COALESCE(o.discount_pct, 0) / 100)), 2) AS total_revenue,
     ROUND(AVG(o.quantity * p.price * (1 - COALESCE(o.discount_pct, 0) / 100)), 2) AS avg_order_value
+    
+-- Order totals
+-- Output:
+-- | total_orders | total_revenue | avg_order_value |
+-- | 180          | 99860.20      | 554.78          |
+
+    
 FROM orders o
 JOIN products p ON o.product_id = p.product_id;
 
@@ -9,6 +16,12 @@ JOIN products p ON o.product_id = p.product_id;
     COUNT(*) AS total_rows,
     COUNT(rating) AS rated_rows,
     (COUNT(*) - COUNT(rating)) AS difference
+
+-- COUNT(*) vs COUNT(column)
+-- Output:
+-- | total_rows | rated_rows | difference |
+-- | 180        | 165        | 15         |
+  
 FROM orders;
 
   SELECT c.customer_id, c.name
@@ -17,6 +30,11 @@ LEFT JOIN orders o ON c.customer_id = o.customer_id
 GROUP BY c.customer_id, c.name
 HAVING COUNT(o.order_id) = 0;
 
+-- Customers with zero orders using LEFT JOIN
+-- Output:
+-- | customer_id | name   |
+-- | C045        | Vihaan |
+
 SELECT customer_id, name
 FROM customers
 WHERE customer_id NOT IN (
@@ -24,6 +42,11 @@ WHERE customer_id NOT IN (
     FROM orders 
     WHERE customer_id IS NOT NULL
 );
+
+-- Customers with zero orders using NOT IN
+-- Output:
+-- | customer_id | name   |
+-- | C045        | Vihaan |
 
   SELECT 
     c.city,
@@ -36,6 +59,13 @@ GROUP BY c.city
 HAVING return_rate_pct > 20.0
 ORDER BY return_rate_pct DESC;
 
+-- Return rate by city above 20%
+-- Output:
+-- | city      | total_orders | returned_orders | return_rate_pct |
+-- | Jaipur    | 19           | 8               | 42.1            |
+-- | Lucknow   | 49           | 15              | 30.6            |
+-- | Bangalore | 33           | 8               | 24.2            |
+
 SELECT 
     c.customer_id,
     c.name,
@@ -46,6 +76,15 @@ JOIN customers c ON o.customer_id = c.customer_id
 GROUP BY c.customer_id, c.name
 ORDER BY total_spend DESC, c.customer_id ASC
 LIMIT 5;
+
+-- Top 5 customers by spend
+-- Output:
+-- | customer_id | name     | total_spend |
+-- | C043        | Reyansh  | 12920.00    |
+-- | C026        | Isha     | 8371.60     |
+-- | C008        | Meera    | 4564.60     |
+-- | C011        | Arjun    | 4111.00     |
+-- | C042        | Sanya    | 3785.00     |
 
 SELECT 
     c.customer_id,
@@ -58,6 +97,15 @@ GROUP BY c.customer_id, c.name
 ORDER BY total_spend DESC, c.customer_id ASC
 LIMIT 3 OFFSET 2;
 
+-- Customer spending ranks 3 to 5 using OFFSET
+-- Output:
+-- | customer_id | name   | total_spend |
+-- | C008        | Meera  | 4564.60     |
+-- | C011        | Arjun  | 4111.00     |
+-- | C042        | Sanya  | 3785.00     |
+
+
+
   SELECT 
     p.category,
     COUNT(o.order_id) AS order_count,
@@ -68,13 +116,34 @@ JOIN customers c ON o.customer_id = c.customer_id
 GROUP BY p.category
 ORDER BY revenue DESC;
 
+-- Revenue by category
+-- Output:
+-- | category     | order_count | category_revenue |
+-- | Haircare     | 54          | 44956.10         |
+-- | Skincare     | 60          | 27346.00         |
+-- | Babycare     | 30          | 16805.00         |
+-- | PersonalCare | 36          | 10753.10         |
+
 
   SELECT COUNT(*) AS customers_starting_with_A
 FROM customers
 WHERE name LIKE 'A%';
 
+-- Customer names starting with A
+-- Output:
+-- | customers_starting_with_A |
+-- | 10                         |
+
   SELECT DISTINCT acquisition_source
 FROM customers;
+
+-- Distinct acquisition sources
+-- Output:
+-- | acquisition_source |
+-- | Organic            |
+-- | Referral           |
+-- | Ad                 |
+-- | Social             |
 
   SET SQL_SAFE_UPDATES = 0;
 ALTER TABLE customers ADD COLUMN loyalty_tier VARCHAR(10);
@@ -87,4 +156,10 @@ SET SQL_SAFE_UPDATES = 1;
 SELECT loyalty_tier, COUNT(*) AS count
 FROM customers
 GROUP BY loyalty_tier;
+
+-- Customer distribution by loyalty tier
+-- Output:
+-- | loyalty_tier | count |
+-- | Gold         | 28    |
+-- | Silver       | 17    |
 
