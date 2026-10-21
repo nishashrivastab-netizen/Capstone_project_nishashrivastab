@@ -1,4 +1,5 @@
 # Mamaearth Growth Analytics Pipeline
+This project was developed as a graded Capstone Assignment for the Data Analytics with AI & Gen AI course at IIT Roorkee (Masai).
 This documentation explains how to execute my data pipeline from top to bottom.
 
 ## 1. Database Setup (SQL)
